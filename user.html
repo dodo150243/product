@@ -25,10 +25,17 @@
 
       <script>
         const socket = io.connect('http://localhost:3000')
+        socket.on("connect", () => {
+  console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+});
+
+socket.on("disconnect", () => {
+  console.log(socket.id); // undefined
+});
         function senProduct(){
           var txt_name = document.querySelector("#txt_name").value;
           var txt_count = document.querySelector("#txt_count").value;
-          console.log(txt_name, txt_count)
+          // console.log(txt_name, txt_count)
           var info = {
             id_task: 'do123',
             name: txt_name,
