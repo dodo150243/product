@@ -9,14 +9,14 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 
-const makeCrud = require('express-json-file-crud').makeCrud;
-const productCrud = makeCrud('order', './storage');
-app.use('/order', productCrud);
+// const makeCrud = require('express-json-file-crud').makeCrud;
+// const productCrud = makeCrud('order', './storage');
+// app.use('/order', productCrud);
 
-//  database json
-const fs = require('fs');
-let rawdata = fs.readFileSync('db.json');
-let order = JSON.parse(rawdata);
+// //  database json
+// const fs = require('fs');
+// let rawdata = fs.readFileSync('db.json');
+// let order = JSON.parse(rawdata);
 // console.log(order);
 
 // let data = [
@@ -36,11 +36,8 @@ let order = JSON.parse(rawdata);
 //         "id": 2
 //     }
 // ];
-  
-
 
 app.get('/user', function(req, res, next) {
-
     
     res.sendfile(__dirname+'/user.html');
     io.on('connection',(socket) =>{
@@ -56,14 +53,9 @@ app.get('/user', function(req, res, next) {
     })
  });
 
-//  const picked = (({ id, id_order, done_on }) => ({  id, id_order, done_on }))(employees[0]);
-
-
- 
  app.get('/admin', function(req, res, next) {
   
     res.sendfile(__dirname+'/admin.html');
-    res.json(console.log(order))
     io.on('connection',(socket) =>{
         console.log(socket.id);
         console.log('admin socket connected')
